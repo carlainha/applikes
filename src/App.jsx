@@ -1,10 +1,10 @@
-import {Post} from "./Post";
 import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 
 import styles from "./App.module.css";
 
 import './global.css';
-import { Sidebar } from "./components/Sidebar";
+import { Post } from "./components/Post";
 
 export function App() {
 return (
@@ -15,18 +15,8 @@ return (
         <Sidebar/>
       </aside>
       <main>
-        <Post 
-          author="Machado de Assis"
-          coment="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, nesciunt. Explicabo voluptate minima libero aperiam velit autem,
-          voluptatibus quasi dicta tempora sequi labore dolore, voluptatem distinctio corrupti officiis optio quas!"/>
-        <Post 
-          author="Clarice Lispector"
-          coment="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, nesciunt. Explicabo voluptate minima libero aperiam velit autem,
-          voluptatibus quasi dicta tempora sequi labore dolore, voluptatem distinctio corrupti officiis optio quas!"/>
-        <Post 
-          author="Jane Austin"
-          coment="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, nesciunt. Explicabo voluptate minima libero aperiam velit autem,
-          voluptatibus quasi dicta tempora sequi labore dolore, voluptatem distinctio corrupti officiis optio quas!"/>
+        <Post/>
+        <Post/>
       </main>
     </div>
   </div>
