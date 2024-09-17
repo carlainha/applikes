@@ -1,4 +1,4 @@
-import styles from './Post.module.css';
+ import styles from './Post.module.css';
 
 export function Post(){
     return(
@@ -25,6 +25,15 @@ export function Post(){
                     <a href="#">#vempraetec</a>
                 </p>
             </div>
+
+            <form className={styles.commentForm}>
+                <strong>Deixe seu feedback !</strong>
+
+                <textarea placeholder='Deixe um comentário'></textarea>
+                
+                <button type='submit'>Publicar</button>
+            </form>
+
         </article>
     )
 }
