@@ -1,47 +1,73 @@
- import { Comment } from './Comment';
 import styles from './Post.module.css';
+import { Comment } from './Comment';
+import { format, formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale/pt-BR';
+import { LineSegment } from '@phosphor-icons/react';
 
-export function Post(){
+//author: {avatarUrl: "", nome: "", cargo:""}
+//dataPublicacao: Date
+//content: string
+
+export function Post({author, dataPublicacao, content}){
+    const dataFormatada = format(dataPublicacao, "d 'de' LLLL 'às' HH:mm'h'", {locale:ptBR})
+    const dataRelativaAoPost = formatDistanceToNow(dataPublicacao, {
+        locale: ptBR,
+        addSuffix: true
+    })
+    
     return(
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
                     <img 
-                        className={styles.avatar}
-                        src="https://github.com/carlainha.png"
+                    className={styles.avatar} 
+                    src={author.avatarUrl}
                     />
                     <div className={styles.authorInfo}>
-                        <strong>Caroline Radichi</strong>
+                        <strong>{author.nome}</strong>
                         <span>Web Developer</span>
                     </div>
                 </div>
-                <time title="10 de setembro às 09:44h" dateTime="2024/09/10 09:44:00">Publicado há 1h</time>
+                <time title={dataFormatada} dateTime={dataPublicacao.toISOString()}>
+                    {dataRelativaAoPost}
+                </time>
             </header>
             <div className={styles.content}>
-                <p>Fala Galera !!!</p>
-                <p>Amanhã teremos viagem a Bienal</p>
-                <p>
-                    <a href="#">#bienaldolivrosp</a>
-                    <a href="#">#eteccidadedolivro</a>
-                    <a href="#">#vempraetec</a>
-                </p>
+
+                {
+                    content.map(line => {
+                       if (line.type === 'paragraph'){
+                            return <p>{line.content}</p>;
+                       } 
+                       else if (line.type === 'link'){
+                            return <p><a href="#">{line.content}</a></p>
+                       }
+                    })
+                }
             </div>
-
+            
             <form className={styles.commentForm}>
-                <strong>Deixe seu feedback !</strong>
+             <strong>Deixe deu feedback</strong>
 
-                <textarea placeholder='Deixe um comentário'></textarea>
-                
-                <footer>
-                    <button type='submit'>Publicar</button>
-                </footer>
+             <textarea placeholder='Deixe um comentário'></textarea>
+
+
+           <footer>
+             <button type='submit'> Publicar </button>
+             </footer>
             </form>
 
-            <div className={styles.commentList}>
-                <Comment/>
-                <Comment/>
-                <Comment/>
-            </div>
+<div className={styles.commentList}>
+<Comment/>
+<Comment/> 
+<Comment/> 
+</div>
+
+
+
+
+
         </article>
+
     )
 }
