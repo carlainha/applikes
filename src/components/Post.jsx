@@ -40,7 +40,7 @@ export function Post({author, dataPublicacao, content}){
                             return <p>{line.content}</p>;
                        } 
                        else if (line.type === 'link'){
-                            return <p><a href="#">{line.content}</a></p>
+                            return <p><a target='blank' href={line.content}>{line.content}</a></p>
                        }
                     })
                 }
